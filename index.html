@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+</head>
+<body>
+
+  <form id="registrationForm" onsubmit="validateForm(); return false;">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+
+    <br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" required>
+
+    <br>
+
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" required>
+
+    <br>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="tel" id="phoneNumber" pattern="[0-9]{10}" required>
+
+    <br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    function validateForm() {
+      // Get input values
+      var name = document.getElementById('name').value;
+      var password = document.getElementById('password').value;
+      var email = document.getElementById('email').value;
+      var phoneNumber = document.getElementById('phoneNumber').value;
+
+      // Validate Name
+      var nameRegex = /^[a-zA-Z]{6,}$/;
+      if (!nameRegex.test(name)) {
+        alert('Invalid Name. Name should contain alphabets and the length should not be less than 6 characters.');
+        return;
+      }
+
+      // Validate Password
+      if (password.length < 6) {
+        alert('Invalid Password. Password should not be less than 6 characters.');
+        return;
+      }
+
+      // Validate Email
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Invalid Email. Please enter a valid email address.');
+        return;
+      }
+
+      // Validate Phone Number
+      var phoneNumberRegex = /^[0-9]{10}$/;
+      if (!phoneNumberRegex.test(phoneNumber)) {
+        alert('Invalid Phone Number. Phone number should contain 10 digits only.');
+        return;
+      }
+
+      // If all validations pass, you can submit the form or perform further actions.
+      alert('Registration Successful!');
+    }
+  </script>
+
+</body>
+</html>
+
